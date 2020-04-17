@@ -3,8 +3,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class HerokuAppTest {
 
@@ -37,6 +40,32 @@ public class HerokuAppTest {
         Assert.assertTrue(element2.isSelected(), "checkbox2 не выбран");
         element2.click();
         Assert.assertFalse(element2.isSelected(), "checkbox2 выбран");
+        driver.quit();
+    }
+
+    @Test
+    public void dropdown(){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("http://the-internet.herokuapp.com/dropdown");
+        /*Взять все элементы дроп-дауна и проверить их наличие что-то не получилось ((*/
+//        Select select = new Select(driver.findElement(By.id("dropdown")));
+//        select.deselectAll();
+//        List<WebElement> selectOptions = select.getOptions();
+//        for (WebElement option : selectOptions) {
+//            select.selectByVisibleText(String.valueOf(option.getText()));
+//
+//        }
+        Select select = new Select(driver.findElement(By.id("dropdown")));
+        select.selectByVisibleText("Option 1");
+        String text1 = select.getFirstSelectedOption().getText();
+        Assert.assertEquals(text1, "Option 1", "Option 1 не выбран");
+        select.selectByVisibleText("Option 2");
+        String text2 = select.getFirstSelectedOption().getText();
+        Assert.assertEquals(text2, "Option 2", "Option 2 не выбран");
         driver.quit();
     }
 
