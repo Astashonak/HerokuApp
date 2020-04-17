@@ -9,6 +9,9 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 public class HerokuAppTest {
 
     @Test
@@ -51,15 +54,9 @@ public class HerokuAppTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://the-internet.herokuapp.com/dropdown");
-        /*Взять все элементы дроп-дауна и проверить их наличие что-то не получилось ((*/
-//        Select select = new Select(driver.findElement(By.id("dropdown")));
-//        select.deselectAll();
-//        List<WebElement> selectOptions = select.getOptions();
-//        for (WebElement option : selectOptions) {
-//            select.selectByVisibleText(String.valueOf(option.getText()));
-//
-//        }
         Select select = new Select(driver.findElement(By.id("dropdown")));
+        assertFalse("Dropdown поддерживает множественный выбор",select.isMultiple());
+        assertEquals("В Dropdown не три варианта выбора",3, select.getOptions().size());
         select.selectByVisibleText("Option 1");
         String text1 = select.getFirstSelectedOption().getText();
         Assert.assertEquals(text1, "Option 1", "Option 1 не выбран");
