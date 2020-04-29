@@ -1,5 +1,7 @@
 package Tests;
 
+import Pages.ContextMenuPage;
+import Pages.DragAndDropPage;
 import Pages.FileUploaderPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +14,9 @@ public class BaseTest {
 
     WebDriver driver;
     FileUploaderPage fileUploaderPage;
+    DragAndDropPage dragAndDropPage;
+    ContextMenuPage contextMenuPage;
+
 
     @BeforeMethod
     public void setUp() {
@@ -19,6 +24,8 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         fileUploaderPage = new FileUploaderPage(driver);
+        dragAndDropPage = new DragAndDropPage(driver);
+        contextMenuPage = new ContextMenuPage(driver);
     }
 
     @AfterMethod(alwaysRun=true)
