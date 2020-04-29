@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,9 @@ public class ContextMenuPage extends BasePage{
     }
 
     public void verifyAlertText(String realAlertMessage){
+        Alert alert = driver.switchTo().alert();
         String alertMessage = driver.switchTo().alert().getText();
         Assert.assertEquals(alertMessage, realAlertMessage, "Текст алерта не совпадает");
+        alert.accept();
     }
 }

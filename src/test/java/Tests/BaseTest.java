@@ -3,6 +3,7 @@ package Tests;
 import Pages.ContextMenuPage;
 import Pages.DragAndDropPage;
 import Pages.FileUploaderPage;
+import Pages.JavaScriptAlertsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -16,6 +17,7 @@ public class BaseTest {
     FileUploaderPage fileUploaderPage;
     DragAndDropPage dragAndDropPage;
     ContextMenuPage contextMenuPage;
+    JavaScriptAlertsPage javaScriptAlertsPage;
 
 
     @BeforeMethod
@@ -26,6 +28,7 @@ public class BaseTest {
         fileUploaderPage = new FileUploaderPage(driver);
         dragAndDropPage = new DragAndDropPage(driver);
         contextMenuPage = new ContextMenuPage(driver);
+        javaScriptAlertsPage = new JavaScriptAlertsPage(driver);
     }
 
     @AfterMethod(alwaysRun=true)
