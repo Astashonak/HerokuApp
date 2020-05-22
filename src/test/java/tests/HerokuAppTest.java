@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,7 @@ public class HerokuAppTest {
     }
 
     @Test
+    @Description("asdasdasdas")
     public void checkboxes(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");

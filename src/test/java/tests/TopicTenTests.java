@@ -1,10 +1,12 @@
 package tests;
 
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 
 public class TopicTenTests extends BaseTest {
 
     @Test
+    @Description("asdasdasdsa")
     public void fileUploaderTest(){
         fileUploaderPage.openPage();
         fileUploaderPage.validateFileUploader("test for uploading a file.docx");
